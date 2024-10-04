@@ -20,4 +20,4 @@
 - A high level AWS arhitecture diagram
 
 ## Bouns (Infrastructure as code)
-- Creating Load Balancer and EC2 with Auto Scaling Group
+- Creating Load Balancer and EC2 with Auto Scaling Group using Terraform
