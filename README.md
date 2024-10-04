@@ -4,7 +4,7 @@
 - $ docker compose up --build
 
 ## Approach
-- Services are built in python and react js
+- Services are built in python/nodejs/go and reactjs
 - Database is official mongodb/posgresql/mysql docker container
 - Service images are built as needed
 - docker-compose is used to orchestrate containers
