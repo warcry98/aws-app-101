@@ -48,6 +48,6 @@
 
 ## For Testing
 - Change .env.example files in backend, frontend, and root to .env files
-- Run docker `docker compose up --build` in root
+- Run `docker compose up --build` in root
 - Use `terraform init` in deploy/terraform to initialize terraform
 - Check Terraform using `terraform validate`
