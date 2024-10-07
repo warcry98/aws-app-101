@@ -1,3 +1,3 @@
-FROM python:alpine3.20
+FROM golang:alpine3.20
 
 EXPOSE 8080
