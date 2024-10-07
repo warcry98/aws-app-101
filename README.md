@@ -10,11 +10,11 @@
 ### Implementation
 
 - Create a React application for the frontend.
-- Set up a Node.js server for the backend.
+- Set up an api for the backend.
 - Implement login pages using React for the frontend.
-- Connect the React frontend to the Node.js backend for authentication.
-- Ensure the login functionality works correctly by testing the integration between frontend and backend.
-- Make the application testable by running `docker-compose up --build`.
+- Connect the React frontend to the api backend for authentication.
+- Ensure the login functionality works correctly
+- Make the application testable by running `docker compose up --build`.
 
 ### Final Steps
 
