@@ -7,6 +7,7 @@ import (
 	"backend/initializer"
 	"backend/lib/middleware"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,11 +17,17 @@ func main() {
 	initializer.SyncDatabase(DB)
 
 	r := gin.New()
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
+	config.AllowCredentials = true
+	r.Use(cors.New(config))
 	r.Use(middleware.ApiMiddleware(DB))
 
-	r.POST("/signup", signup.Controller)
-	r.POST("/login", login.Controller)
-	r.GET("/validate", middleware.RequireAuth, validate.Controller)
+	api := r.Group("api")
+	api.POST("/signup", signup.Controller)
+	api.POST("/login", login.Controller)
+	api.GET("/validate", middleware.RequireAuth, validate.Controller)
 
 	r.Run()
 }

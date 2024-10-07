@@ -8,10 +8,14 @@ import (
 )
 
 func Controller(c *gin.Context) {
-	user, _ := c.Get("user")
-	data_user := user.(models.User)
+	user, ok := c.Get("user")
+	if ok {
+		data_user := user.(models.User)
 
-	c.JSON(http.StatusOK, gin.H{
-		"message": data_user.Username,
-	})
+		c.JSON(http.StatusOK, gin.H{
+			"message": data_user.Username,
+		})
+	} else {
+		c.AbortWithStatus(http.StatusUnauthorized)
+	}
 }

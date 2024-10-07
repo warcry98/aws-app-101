@@ -7,11 +7,13 @@ CREATE TABLE users (
 );
 
 INSERT INTO users (
+    user_id,
     username,
     email,
-    password,
+    password
 ) VALUES (
+    1,
     'Tester-1',
     'Tester@gmail.com',
-    '$2a$10$SncukdqYaeNqiTOs9a9pGeIjLKhZ8lMEkm7efOXPcnkbnsn7rSjrG',
+    '$2a$10$SncukdqYaeNqiTOs9a9pGeIjLKhZ8lMEkm7efOXPcnkbnsn7rSjrG'
 );

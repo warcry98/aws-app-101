@@ -2,6 +2,7 @@ version: '3.9'
 services:
   postgres:
     image: postgres:latest
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_USER: ${PG_USERNAME}
@@ -9,22 +10,38 @@ services:
       POSTGRES_DB: ${PG_DATABASE}
     ports:
     - 5432:5432
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$PG_USERNAME"]
       interval: 1s
       timeout: 5s
       retries: 10
-  api:
+  backend:
     build: ./backend
     image: backend
+    container_name: backend
+    restart: always
     depends_on:
     - "postgres"
     ports:
     - 8080:8080
-  # frontend:
-  #   build: ./frontend
-  #   image: frontend:latest
-  #   ports:
-  #   - 80:3000
-  #   depends_on:
-  #   - "api"
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:8080/api/login"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+  frontend:
+    build: ./frontend
+    image: frontend
+    container_name: frontend
+    restart: always
+    ports:
+    - 3000:3000
+    depends_on:
+    - "backend"
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:3000/"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
